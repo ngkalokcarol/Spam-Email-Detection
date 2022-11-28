@@ -1,5 +1,3 @@
-# Spam-Email-Detection
-
 # Spam VS Non-Spam emails
 
 Download the dataset on spam vs. non-spam emails from the following URL: http://archive.ics.uci.edu/ml/datasets/Spambase. Specifically, (i) file “spambase.data” contains the actual data, and (ii) files “spambase.names” and “spambase.DOCUMENTATION” contain the description of the data.
@@ -421,9 +419,9 @@ df.groupby('class').size().plot(kind='pie',
 
 
 
+![output_9_1](https://user-images.githubusercontent.com/50436546/204363701-d0fb860f-dd45-4a18-b009-f6cb4884bcd0.png)
 
-    
-![png](output_9_1.png)
+
     
 
 
@@ -843,9 +841,7 @@ plt.show()
 ```
 
 
-    
-![png](output_49_0.png)
-    
+![output_49_0](https://user-images.githubusercontent.com/50436546/204363814-cf6a8b69-09b6-48c6-a2dc-9559a3f02acb.png)
 
 
 The number False Positives (47) and False Negatives (40) is very close in the confusion matrix.
@@ -886,11 +882,7 @@ skplt.metrics.plot_lift_curve(y_test, y_prob)
 plt.show() 
 ```
 
-
-    
-![png](output_53_0.png)
-    
-
+![output_53_0](https://user-images.githubusercontent.com/50436546/204363835-5abdfa88-180c-4ecd-9b8e-4394beba18f5.png)
 
 
 ```python
@@ -913,10 +905,7 @@ plt.xlabel('False Positive Rate')
 plt.show()
 ```
 
-
-    
-![png](output_54_0.png)
-    
+![output_54_0](https://user-images.githubusercontent.com/50436546/204363853-0c117339-e9a3-4022-9f1a-0c8b1cbef6ee.png)
 
 
 The ROC curve of the XGBoost Model is close to a perfect classifier. It performs much better than a random classifier.
