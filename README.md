@@ -912,8 +912,6 @@ The ROC curve of the XGBoost Model is close to a perfect classifier. It performs
 
 ## Performance Discussion
 
-Performance Discussion (Write-up)
-
 The order of best performing models is (when we are concerned with Precision):
 
 1. XGBoost (92.4%)
