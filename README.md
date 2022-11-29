@@ -408,7 +408,8 @@ df['class'].value_counts()
 ```python
 df.groupby('class').size().plot(kind='pie',
                                 y = "class",
-                                label = "Type",
+                                cmap='spring',
+                                label = "Spam 1   Non-Spam 0",
                                 autopct='%1.1f%%')
 ```
 
@@ -419,7 +420,7 @@ df.groupby('class').size().plot(kind='pie',
 
 
 
-![output_9_1](https://user-images.githubusercontent.com/50436546/204363701-d0fb860f-dd45-4a18-b009-f6cb4884bcd0.png)
+![image](https://user-images.githubusercontent.com/50436546/204622118-d061bdc4-f463-4810-8cab-5d8a6a74ff81.png)
 
 
     
@@ -704,17 +705,17 @@ xgb_clf1 = GridSearchCV(estimator = clf_xgb, param_grid = p_grid_xgb, scoring = 
 
 # Outer Loop: Testing the performance of all 6 models
 
-dt_scores1 = cross_val_score(dt_clf, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
+dt_scores1 = cross_val_score(dt_clf1, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
 dt_score1 = dt_scores1.mean()
-knn_scores1 = cross_val_score(knn_clf, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
+knn_scores1 = cross_val_score(knn_clf1, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
 knn_score1 = knn_scores1.mean()
-lr_scores1 = cross_val_score(lr_clf, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
+lr_scores1 = cross_val_score(lr_clf1, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
 lr_score1 = lr_scores1.mean()
-svm_scores1 = cross_val_score(svm_clf, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
+svm_scores1 = cross_val_score(svm_clf1, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
 svm_score1 = svm_scores1.mean()
-mlp_scores1 = cross_val_score(mlp_clf, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
+mlp_scores1 = cross_val_score(mlp_clf1, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
 mlp_score1 = mlp_scores1.mean()
-xgb_scores1 = cross_val_score(xgb_clf, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
+xgb_scores1 = cross_val_score(xgb_clf1, X = X_train, y = y_train, scoring = score1, cv = outer_cv1)
 xgb_score1 = xgb_scores1.mean()
 ```
 
@@ -741,23 +742,23 @@ print('Mean precision of Neural Network (MLP):', mlp_score1)
 print('Standard Deviation for MLP', round(np.std(mlp_scores1),4))
 ```
 
-    Mean precision of Decision Tree: 0.8387638417252443
-    Standard Deviation for Decision Tree 0.0459
-    
-    Mean precision of KNN: 0.8889160839160839
-    Standard Deviation for KNN 0.0038
-    
-    Mean precision of Logistic Regression: 0.8890020715863413
-    Standard Deviation for Logistic Regression 0.0232
+    Mean precision of Decision Tree: 0.8591459707311945
+    Standard Deviation for Decision Tree 0.0588
+
+    Mean precision of KNN: 0.9028545714148978
+    Standard Deviation for KNN 0.0168
+
+    Mean precision of Logistic Regression: 0.8931973753156139
+    Standard Deviation for Logistic Regression 0.0211
     
     Mean precision of SVM: 0.9070215431428804
     Standard Deviation for SVM 0.0116
     
-    Mean precision of XGBoost: 0.9236445750083551
-    Standard Deviation for XGBoost 0.0209
-    
-    Mean precision of Neural Network (MLP): 0.9205410636071525
-    Standard Deviation for MLP 0.0276
+    Mean precision of XGBoost: 0.9249939551844779
+    Standard Deviation for XGBoost 0.0214
+
+    Mean precision of Neural Network (MLP): 0.9179791111177314
+    Standard Deviation for MLP 0.018
 
 
 #### XGBoost got the Highest Mean Performance in both Accuracy and Precision. We will run the best parameters and best scores for further tuning
@@ -836,13 +837,14 @@ y_pred = xgb_clf_final.predict(X_test)
 
 
 ```python
-plot_confusion_matrix(xgb_clf_final, X_test, y_test)
+plot_confusion_matrix(xgb_clf_final, X_test, y_test,
+                      cmap = 'spring',
+                     display_labels=['Spam', 'Non-Spam'])
 plt.show()
 ```
 
 
-![output_49_0](https://user-images.githubusercontent.com/50436546/204363814-cf6a8b69-09b6-48c6-a2dc-9559a3f02acb.png)
-
+![image](https://user-images.githubusercontent.com/50436546/204622723-63e0a2ce-cb00-4feb-ba34-4e3c75f80100.png)
 
 The number False Positives (47) and False Negatives (40) is very close in the confusion matrix.
 
